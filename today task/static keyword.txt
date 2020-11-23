@@ -1,0 +1,3 @@
+Static keywords:- static keywords are used to allocate function, variable, data member for the lifetime of the program. 
+
+

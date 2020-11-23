@@ -1,0 +1,4 @@
+Access Specifier:- Access specifier describes how the members of the class accessed into a program. Access spcifier are of three types
+1) public:- In this access specifier, members are accessible from outside the class.
+2) Private:- In this access specifier, Members are not given access from outside the class.
+3) Protected:- In this acess specifier, members are forbids to access outside the class, but acan be accessed from inherited class.
