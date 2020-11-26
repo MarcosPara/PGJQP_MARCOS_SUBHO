@@ -1,0 +1,13 @@
+ Constructor:
+
+1: it used to initialise an object.
+2: it doesnot return any values.
+3: it should be same name with class name
+4: it invoked implicity
+
+Method:
+
+1: it used to exibits functionality of an object.
+2: it may or maynot be return any value.
+3: it should not be same name with class name.
+4: it invoked explicity.
