@@ -1,0 +1,103 @@
+#include<iostream>
+using namespace std;
+class employee
+{
+protected:
+    int empid,hrid,pgid;
+    int allowance,hra,da,ta,ot;
+    int deduction,pf,it,otx;
+    char empname[50];
+    float sal,totsal,totdec,total;
+    float bon;
+    void accept()
+    {
+        cout<<"------------------------------------------------------------------------------\n";
+        cout<<"Enter Employee's ID: ";
+        cin>>empid;
+        cout<<"Enter Employee's name: ";
+        cin>>empname;
+        cout<<"Enter Employee's Salary: ";
+        cin>>sal;
+        cout<<"Enter Bonus: ";
+        cin>>bon;
+      hra=0.24*sal;
+      da=0.22*sal;
+      ta=0.08*sal;
+      ot=0.16*sal;
+      totsal=hra+da+ta+ot+sal+bon;
+      pf=0.1*totsal;
+      it=0.1*totsal;
+      otx=0.02*totsal;
+      allowance=hra+da+ta+ot;
+      totdec=pf+it+otx;
+      total=totsal-totdec;
+    }
+};
+class Hr:public employee
+{
+    public:void display()
+
+    {
+        accept();
+         cout<<"Enter the HR ID: ";
+        cin>>hrid;
+        cout<<"\n--------------------------------HR Information-----------------------------------\n";
+      cout<<"The Employee ID : "<<empid<<"                              " <<"The HR ID is: "<<hrid<<endl;
+      cout<<"The Name of the HR is: "<<empname<<endl;
+      cout<<"Basic Salary: "<<sal<<endl;
+      cout<<"Bonus: "<<bon<<endl;
+      cout<<"Allowance Details"<<"                                "<< "Tax and Deductions Details"<<endl;
+      cout<<"House Rent Allowance: "<<hra<<"                      "<< "Provident fund: "<<pf<<endl;
+      cout<<"Dearness Allowance: "<<da<< "                        "<< "Income Tax: "<<it<<endl;
+      cout<<"Travel Allowance: "<<ta<< "                          "<< "Other taxes: "<<otx<<endl;
+      cout<<"Other Allowance: "<<ot<<  "                          "<< "Tax and Deduction : "<<totdec<<endl;
+      cout<<"Allowance: "<<allowance<<endl;
+      cout<<"total salary:"<<totsal<<endl;
+
+
+      cout<<"Total Amount Credited to Employee's Account :"<<total<<endl;
+      cout<<"\n===================================================================================="<<endl;
+
+      system("\n pause");
+    }
+};
+class  programmer:public employee
+
+{
+    public :void display()
+    {
+        accept();
+         cout<<"Enter the Programmer ID: ";
+        cin>>pgid;
+        if(pgid==empid)
+        {
+         cout<<" Wrong ID Input"<<endl;
+        }
+        else
+        {
+        cout<<"\n------------------------------Programmer Information------------------------------\n";
+      cout<<"The Employee ID : "<<empid<<"                        " <<"The Programmer ID is: "<<hrid<<endl;
+      cout<<"The Name of the HR is: "<<empname<<endl;
+      cout<<"Basic Salary: "<<sal<<endl;
+      cout<<"Bonus: "<<bon<<endl;
+      cout<<"Allowance Details"<<"                                "<< "Tax and Deductions Details"<<endl;
+      cout<<"House Rent Allowance: "<<hra<<"                      "<< "Provident fund: "<<pf<<endl;
+      cout<<"Dearness Allowance: "<<da<< "                        "<< "Income Tax: "<<it<<endl;
+      cout<<"Travel Allowance: "<<ta<< "                          "<< "Other taxes: "<<otx<<endl;
+      cout<<"Other Allowance: "<<ot<<  "                          "<< "Tax and Deduction : "<<totdec<<endl;
+      cout<<"Allowance: "<<allowance<<endl;
+      cout<<"total salary:"<<totsal<<endl;
+
+
+      cout<<"Total Amount Credited to Employee's Account :"<<total<<endl;
+      cout<<"\n===================================================================================="<<endl;
+        }
+    }
+};
+int main()
+{
+    Hr h;
+    programmer p1;
+    h.display();
+    p1.display();
+}
