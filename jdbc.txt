@@ -1,0 +1,159 @@
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JPanel;
+
+
+class register extends JFrame implements ActionListener {
+	JPanel p1,p2;
+	JLabel l1, l2, l3;
+	JTextField t1, t2, t3;
+	JButton b1,b2,b3;
+
+	register() {
+		
+		p1 = new JPanel(new GridLayout(3, 2));
+		add(p1,BorderLayout.NORTH);
+		
+		p2= new JPanel(new GridLayout(1, 3));
+		add(p2,BorderLayout.SOUTH);
+		l1 = new JLabel("Enter Student Id");
+		p1.add(l1);
+		t1 = new JTextField(100);
+		p1.add(t1);
+
+		l2 = new JLabel("Enter Student Name");
+		p1.add(l2);
+		t2 = new JTextField(100);
+		p1.add(t2);
+
+		l3 = new JLabel("Enter Student Course");
+		p1.add(l3);
+		t3 = new JTextField(100);
+		p1.add(t3);
+
+		b1 = new JButton("Insert");
+		b1.addActionListener(this);
+		p2.add(b1);
+		
+		b2 = new JButton("Update");
+		b2.addActionListener(this);
+		p2.add(b2);
+		
+		b3 = new JButton("Delete");
+		b3.addActionListener(this);
+		p2.add(b3);
+
+		setVisible(true);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSize(500, 500);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JButton b = (JButton)e.getSource();
+		if(b.getText().equals("Insert")) {
+			try {
+				
+				if(Button_action.insert_action(Integer.parseInt(t1.getText()),t2.getText(), t3.getText()))
+					JOptionPane.showMessageDialog(p1, "Data Inserted");
+				else
+					JOptionPane.showMessageDialog(p1, "Data not Inserted");
+			} catch (Exception e1) 		
+			
+		}
+		else if(b.getText().equals("Update")) {
+			try {
+				
+				if(Button_action.update_action(Integer.parseInt(t1.getText()), t3.getText()))
+					JOptionPane.showMessageDialog(p1, "Data Updated");
+				else
+					JOptionPane.showMessageDialog(p1, "Data not Updated");
+			} catch (Exception e1) 
+					
+		}
+		else if(b.getText().equals("Delete")) {
+			try {
+				
+				if(Button_action.delete_action(Integer.parseInt(t1.getText())))
+					JOptionPane.showMessageDialog(p1, "Data Deleted");
+				else
+					JOptionPane.showMessageDialog(p1, "Data not Deleted");
+			} catch (Exception e1) 
+				
+		}
+	}
+}
+public class Example_project {
+	public static void main(String[] args) {
+		register r = new register();
+
+	}
+
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+-------------------------------------------------------------------------------------------------------------------------------
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class Button_action {
+
+	public static boolean insert_action(int id, String name, String course) throws SQLException {
+		Connection con = DriverManager
+				.getConnection("jdbc:sqlserver://Dell;databaseName=student;user=sa;password=niit@123");
+		PreparedStatement statement=con.prepareStatement("insert into std_record1 values(?,?,?)");
+		statement.setInt(1,id);
+		statement.setString(2,name);
+		statement.setString(3,course);
+		int result;
+		result=statement.executeUpdate();
+		if(result>0)
+			return true;
+		else
+			return false;
+	}
+	
+	public static boolean update_action(int id, String course) throws SQLException {
+		Connection con = DriverManager
+				.getConnection("jdbc:sqlserver://Dell;databaseName=student;user=sa;password=niit@123");
+		PreparedStatement statement=con.prepareStatement("update std_record1 set course=? where id=?");
+		statement.setInt(2,id);
+		statement.setString(1,course);
+		int result;
+		result=statement.executeUpdate();
+		if(result>0)
+			return true;
+		else
+			return false;
+	}
+	
+	public static boolean delete_action(int id) throws SQLException {
+		Connection con = DriverManager
+				.getConnection("jdbc:sqlserver://Dell;databaseName=student;user=sa;password=niit@123");
+		PreparedStatement statement=con.prepareStatement("delete from std_record1 where id=?");
+		statement.setInt(1,id);
+		
+		int result;
+		result=statement.executeUpdate();
+		if(result>0)
+			return true;
+		else
+			return false;
+	}
+}
