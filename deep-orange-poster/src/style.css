@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: #fff;
+  background: #171717;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-width: 280px;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+.stage {
+  display: grid;
+  min-height: 100vh;
+  min-height: 100svh;
+  place-items: center;
+  padding: 1rem;
+}
+
+.poster {
+  position: relative;
+  display: flex;
+  width: min(50rem, calc((100svh - 2rem) * 0.7073), calc(100vw - 2rem));
+  aspect-ratio: 800 / 1131;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  background: #e5390b;
+  box-shadow: 0 1rem 4rem rgb(0 0 0 / 35%);
+  isolation: isolate;
+}
+
+.poster__masthead,
+.poster__details {
+  position: relative;
+  z-index: 3;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+.poster__masthead {
+  padding-top: clamp(1.25rem, 5vw, 3rem);
+}
+
+.poster__brand {
+  margin: 0 0 clamp(1rem, 2.5vw, 2rem);
+  padding-left: 0.25em;
+  font-size: clamp(1.25rem, 6.5vw, 3.25rem);
+  font-weight: 900;
+  letter-spacing: 0.25em;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.poster__rule {
+  width: 100%;
+  border-top: 1.5px solid currentColor;
+}
+
+.poster__word {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: clamp(0.3rem, 1vw, 0.75rem);
+  font-size: clamp(3rem, 21vw, 16.25rem);
+  font-weight: 900;
+  line-height: 0.8;
+  pointer-events: none;
+  transform: scaleY(1.15);
+  user-select: none;
+}
+
+.poster__figure {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.poster__figure img {
+  display: block;
+  width: 100%;
+  height: 85%;
+  object-fit: cover;
+  object-position: center bottom;
+  filter: contrast(1.15) brightness(0.95);
+}
+
+.poster__details {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: clamp(1rem, 4vw, 3rem);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.poster__date,
+.poster__venue,
+.poster__artists,
+.poster__tickets {
+  margin: 0;
+  padding-block: clamp(0.55rem, 1.6vw, 1rem);
+  font-weight: 700;
+}
+
+.poster__date {
+  padding-left: 0.3em;
+  font-size: clamp(0.68rem, 3.25vw, 1.625rem);
+  letter-spacing: 0.3em;
+}
+
+.poster__venue {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: clamp(0.5rem, 1vw, 1rem);
+  padding-left: 0.15em;
+  font-size: clamp(1.1rem, 5.25vw, 2.625rem);
+  font-weight: 900;
+  letter-spacing: 0.15em;
+}
+
+.poster__venue span {
+  font-size: 0.67em;
+  font-weight: 700;
+}
+
+.poster__artists {
+  padding-left: 0.25em;
+  font-size: clamp(0.6rem, 2.75vw, 1.375rem);
+  letter-spacing: 0.25em;
+}
+
+.poster__tickets {
+  padding-left: 0.2em;
+  font-size: clamp(0.5rem, 2.25vw, 1.125rem);
+  letter-spacing: 0.2em;
+}
+
+@media (max-width: 420px) {
+  .poster__details {
+    padding-inline: 1rem;
+  }
+
+  .poster__date,
+  .poster__artists,
+  .poster__tickets {
+    letter-spacing: 0.12em;
+  }
+}
